@@ -1,0 +1,122 @@
+{
+  "name": "JamberTech-WA",
+  "version": "1.0.0",
+  "description": "JamberTech-WA — Advanced WhatsApp Multi-Device Bot",
+  "logo": "",
+  "keywords": ["jambertech-wa", "whatsapp-bot", "whatsapp-md"],
+  "repository": "https://github.com/afnan-altaf/JamberTech-WA",
+  "success_url": "/",
+  "stack": "container",
+  "env": {
+    "SESSION_ID": {
+      "description": "Put your Session ID here. Must start with 'IK~'",
+      "required": true,
+      "value": ""
+    },
+    "OWNER_NUMBER": {
+      "description": "Your WhatsApp number with country code (no + sign), e.g. 923XXXXXXXXX",
+      "required": true,
+      "value": ""
+    },
+    "OWNER_NAME": {
+      "description": "Your name",
+      "required": true,
+      "value": "JamberTech"
+    },
+    "BOT_NAME": {
+      "description": "Bot display name",
+      "required": false,
+      "value": "JamberTech-WA"
+    },
+    "BOT_PIC": {
+      "description": "Bot profile picture URL",
+      "required": false,
+      "value": ""
+    },
+    "MODE": {
+      "description": "Bot mode: public / private / inbox / groups",
+      "required": false,
+      "value": "public"
+    },
+    "PREFIX": {
+      "description": "Bot command prefix",
+      "required": false,
+      "value": "."
+    },
+    "SUDO_NUMBERS": {
+      "description": "Extra admin numbers (comma separated, with country code)",
+      "required": false,
+      "value": ""
+    },
+    "ANTI_DELETE": {
+      "description": "Anti-delete: true / inboxonly / allchats / false",
+      "required": false,
+      "value": "true"
+    },
+    "AUTO_READ_STATUS": {
+      "description": "Auto view statuses: true / false",
+      "required": false,
+      "value": "true"
+    },
+    "AUTO_LIKE_STATUS": {
+      "description": "Auto like statuses: true / false",
+      "required": false,
+      "value": "true"
+    },
+    "AUTO_LIKE_EMOJIS": {
+      "description": "Emojis for auto-liking statuses (comma separated)",
+      "required": false,
+      "value": "💜,💛,❤️,🤍,💙"
+    },
+    "AUTO_REPLY_STATUS": {
+      "description": "Send a message after viewing status: true / false",
+      "required": false,
+      "value": "false"
+    },
+    "STATUS_REPLY_MSG": {
+      "description": "Message to send when auto-replying to status views",
+      "required": false,
+      "value": "✅ Status Viewed By JamberTech WA"
+    },
+    "ANTILINK": {
+      "description": "Anti-link in groups: true (kick) / delete / warn / false",
+      "required": false,
+      "value": "true"
+    },
+    "ANTICALL": {
+      "description": "Block incoming calls: true / false",
+      "required": false,
+      "value": "false"
+    },
+    "ANTIBAD": {
+      "description": "Delete bad words: true / false",
+      "required": false,
+      "value": "false"
+    },
+    "CHAT_BOT": {
+      "description": "AI chatbot: true / inbox / groups / false",
+      "required": false,
+      "value": "false"
+    },
+    "WELCOME": {
+      "description": "Welcome new group members: true / false",
+      "required": false,
+      "value": "false"
+    },
+    "AUTO_READ_MESSAGES": {
+      "description": "Auto blue tick: true / commands / false",
+      "required": false,
+      "value": "false"
+    },
+    "PRESENCE": {
+      "description": "Bot presence: online / typing / recording / null",
+      "required": false,
+      "value": "online"
+    },
+    "TIME_ZONE": {
+      "description": "Your timezone, e.g. Asia/Karachi",
+      "required": false,
+      "value": "Asia/Karachi"
+    }
+  }
+}
