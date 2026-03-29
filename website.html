@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <title>JamberTech Official | JamberTech-WA Bot Hosting</title>
+  <meta name="description" content="Deploy your JamberTech-WA WhatsApp bot in seconds. Free hosting powered by JamberTech Official."/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Poppins',sans-serif;background:#0a0a0f;color:white;min-height:100vh;overflow-x:hidden}
+    .bg-gradient{position:fixed;width:100%;height:100%;background:radial-gradient(circle at 30% 40%,rgba(41,196,140,.15) 0%,transparent 60%),radial-gradient(circle at 70% 70%,rgba(25,118,210,.15) 0%,transparent 60%),#0a0a0f;z-index:0}
+    .glow-orb{position:fixed;width:600px;height:600px;border-radius:50%;filter:blur(120px);opacity:.3;z-index:1;animation:float 20s infinite ease-in-out}
+    .orb-1{top:-200px;left:-200px;background:linear-gradient(135deg,#29c48c,#1976d2);animation-delay:0s}
+    .orb-2{bottom:-200px;right:-200px;background:linear-gradient(135deg,#7c3aed,#2563eb);animation-delay:-10s}
+    @keyframes float{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(50px,-50px) scale(1.1)}66%{transform:translate(-50px,50px) scale(.9)}}
+    .container{position:relative;z-index:10;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+    .card{width:100%;max-width:750px;background:rgba(20,20,30,.7);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1);border-radius:30px;padding:40px 30px;box-shadow:0 20px 80px rgba(0,0,0,.5);position:relative;overflow:hidden;animation:slideIn .6s ease}
+    @keyframes slideIn{from{opacity:0;transform:translateY(50px)}to{opacity:1;transform:translateY(0)}}
+    .card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#29c48c,#1976d2,transparent)}
+    .header{text-align:center;margin-bottom:30px}
+    .logo-container{width:90px;height:90px;margin:0 auto 20px;position:relative}
+    .logo-ring{position:absolute;top:0;left:0;width:100%;height:100%;border:3px solid transparent;border-top-color:#29c48c;border-right-color:#1976d2;border-radius:50%;animation:spin 3s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .logo{width:100%;height:100%;background:linear-gradient(135deg,#29c48c,#1976d2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:36px}
+    .title{font-size:26px;font-weight:700;letter-spacing:1px;margin-bottom:8px}
+    .subtitle{color:rgba(255,255,255,.6);font-size:14px}
+    .badge{display:inline-block;background:linear-gradient(135deg,#29c48c22,#1976d222);border:1px solid #29c48c44;color:#29c48c;padding:4px 12px;border-radius:20px;font-size:12px;margin-top:8px}
+    .bot-selector{display:flex;gap:10px;margin-bottom:20px}
+    .bot-btn{flex:1;padding:12px;border-radius:12px;border:2px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);color:rgba(255,255,255,.7);cursor:pointer;font-family:'Poppins',sans-serif;font-size:14px;font-weight:500;transition:all .3s;display:flex;align-items:center;justify-content:center;gap:8px}
+    .bot-btn:hover,.bot-btn.active{border-color:#29c48c;background:linear-gradient(135deg,#29c48c22,#1976d222);color:white}
+    .info-box{background:rgba(41,196,140,.1);border:1px solid rgba(41,196,140,.3);border-radius:12px;padding:12px 16px;margin-bottom:20px;display:flex;align-items:flex-start;gap:10px;font-size:13px}
+    .info-box i{color:#29c48c;margin-top:2px;flex-shrink:0}
+    .info-box strong{color:#29c48c;display:block;margin-bottom:2px}
+    .info-box p{color:rgba(255,255,255,.7)}
+    .form-group{margin-bottom:18px}
+    .label{display:block;margin-bottom:8px;font-size:13px;font-weight:500;color:rgba(255,255,255,.8)}
+    .input-wrapper{position:relative}
+    .input{width:100%;padding:12px 16px 12px 44px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;color:white;font-family:'Poppins',sans-serif;font-size:14px;transition:all .3s;outline:none}
+    .input:focus{border-color:#29c48c;box-shadow:0 0 0 3px rgba(41,196,140,.1)}
+    .input::placeholder{color:rgba(255,255,255,.3)}
+    .input-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:#29c48c;font-size:16px}
+    .hint{font-size:12px;color:rgba(255,255,255,.5);margin-top:6px;display:flex;align-items:center;gap:6px}
+    .config-header{display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:14px 16px;cursor:pointer;transition:all .3s}
+    .config-header:hover{border-color:rgba(41,196,140,.3);background:rgba(41,196,140,.05)}
+    .config-header-left{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:500}
+    .config-header-left i{color:#29c48c}
+    .config-arrow{color:rgba(255,255,255,.5);transition:transform .3s}
+    .config-content{background:rgba(10,10,20,.5);border:1px solid rgba(255,255,255,.08);border-top:none;border-radius:0 0 12px 12px;padding:0;max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s ease}
+    .config-content.show{max-height:1200px;padding:20px;margin-bottom:18px}
+    .config-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    @media(max-width:500px){.config-grid{grid-template-columns:1fr}}
+    .config-item{display:flex;flex-direction:column;gap:5px}
+    .config-label{font-size:11px;color:rgba(255,255,255,.6);display:flex;align-items:center;gap:5px}
+    .config-label i{color:#29c48c;font-size:10px}
+    .config-input,.config-select{padding:8px 10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;color:white;font-family:'Poppins',sans-serif;font-size:12px;outline:none;transition:border-color .2s}
+    .config-input:focus,.config-select:focus{border-color:#29c48c}
+    .config-input::placeholder{color:rgba(255,255,255,.3)}
+    .config-select option{background:#1a1a2e}
+    .btn-deploy{width:100%;padding:16px;border:none;border-radius:14px;background:linear-gradient(135deg,#29c48c,#1976d2);color:white;font-family:'Poppins',sans-serif;font-size:16px;font-weight:600;cursor:pointer;transition:all .3s;margin-top:8px;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 4px 20px rgba(41,196,140,.3)}
+    .btn-deploy:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(41,196,140,.4)}
+    .loading{display:none;text-align:center;padding:30px 0}
+    .loading.show{display:block}
+    .spinner{width:50px;height:50px;border:4px solid rgba(255,255,255,.1);border-top-color:#29c48c;border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 15px}
+    .loading-text{color:rgba(255,255,255,.7);font-size:14px}
+    .btn-manage{width:100%;padding:14px;border:2px solid rgba(41,196,140,.3);border-radius:14px;background:transparent;color:#29c48c;font-family:'Poppins',sans-serif;font-size:14px;font-weight:500;cursor:pointer;transition:all .3s;margin-top:14px;display:flex;align-items:center;justify-content:center;gap:8px}
+    .btn-manage:hover{background:rgba(41,196,140,.1);border-color:#29c48c}
+    .footer{text-align:center;margin-top:24px}
+    .footer-text{color:rgba(255,255,255,.3);font-size:12px}
+    .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(10px);z-index:1000;align-items:center;justify-content:center;padding:20px}
+    .modal.show{display:flex}
+    .modal-content{background:rgba(20,20,35,.95);border:1px solid rgba(255,255,255,.1);border-radius:24px;padding:30px;width:100%;max-width:440px;position:relative;animation:slideIn .3s ease}
+    .modal-content::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#29c48c,#1976d2,transparent);border-radius:24px 24px 0 0}
+    .modal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+    .modal-title{font-size:18px;font-weight:600;display:flex;align-items:center;gap:8px}
+    .modal-title i{color:#29c48c}
+    .modal-close{background:rgba(255,255,255,.1);border:none;color:white;width:32px;height:32px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;transition:all .2s}
+    .modal-close:hover{background:rgba(255,255,255,.2)}
+    .pair-options{display:flex;flex-direction:column;gap:12px}
+    .pair-option{padding:16px;border-radius:14px;border:2px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);cursor:pointer;transition:all .3s;display:flex;align-items:center;gap:14px}
+    .pair-option:hover{border-color:#29c48c;background:rgba(41,196,140,.1);transform:translateY(-2px)}
+    .pair-option-icon{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#29c48c,#1976d2);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+    .pair-option h3{font-size:15px;font-weight:600;margin-bottom:2px}
+    .pair-option p{font-size:12px;color:rgba(255,255,255,.5)}
+    .success-icon{text-align:center;margin:10px 0 20px}
+    .success-icon i{font-size:60px;color:#29c48c}
+    .success-details{background:rgba(41,196,140,.08);border:1px solid rgba(41,196,140,.2);border-radius:12px;padding:16px;margin:16px 0}
+    .success-label{font-size:11px;color:rgba(255,255,255,.5);margin-bottom:4px}
+    .success-value{font-size:14px;font-weight:600;color:#29c48c;word-break:break-all}
+    .copy-btn{display:flex;align-items:center;gap:6px;padding:8px 14px;background:rgba(41,196,140,.15);border:1px solid rgba(41,196,140,.3);border-radius:8px;color:#29c48c;cursor:pointer;font-size:12px;font-family:'Poppins',sans-serif;transition:all .2s;margin-top:8px}
+    .copy-btn:hover{background:rgba(41,196,140,.25)}
+    .btn-reload{width:100%;padding:12px;border-radius:12px;background:linear-gradient(135deg,#29c48c,#1976d2);border:none;color:white;font-family:'Poppins',sans-serif;font-size:14px;font-weight:600;cursor:pointer;margin-top:16px;transition:all .3s}
+    .btn-reload:hover{opacity:.9;transform:translateY(-1px)}
+    .fork-btns{display:flex;gap:10px}
+    .btn-fork{flex:1;padding:12px;border-radius:12px;border:1px solid rgba(41,196,140,.3);background:rgba(41,196,140,.1);color:#29c48c;cursor:pointer;font-family:'Poppins',sans-serif;font-size:14px}
+    .toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(100px);background:rgba(30,30,50,.95);border:1px solid rgba(255,255,255,.1);padding:14px 24px;border-radius:50px;display:flex;align-items:center;gap:10px;font-size:14px;z-index:9999;transition:transform .4s ease;backdrop-filter:blur(10px)}
+    .toast.show{transform:translateX(-50%) translateY(0)}
+    .toast.success i{color:#29c48c}
+    .toast.error i{color:#ff6b6b}
+  </style>
+</head>
+<body>
+<div class="bg-gradient"></div>
+<div class="glow-orb orb-1"></div>
+<div class="glow-orb orb-2"></div>
+
+<div class="container">
+  <div class="card">
+    <div class="header">
+      <div class="logo-container">
+        <div class="logo-ring"></div>
+        <div class="logo"><i class="fas fa-robot"></i></div>
+      </div>
+      <h1 class="title">JamberTech Official</h1>
+      <p class="subtitle">Deploy your WhatsApp bot in seconds</p>
+      <span class="badge">⚡ JamberTech-WA Powered</span>
+    </div>
+
+    <div class="bot-selector">
+      <button class="bot-btn active" id="getPairBtn"><i class="fas fa-qrcode"></i> GET SESSION</button>
+      <button class="bot-btn" id="forkBtn"><i class="fas fa-code-branch"></i> FORK REPO</button>
+    </div>
+
+    <div class="info-box">
+      <i class="fas fa-info-circle"></i>
+      <div>
+        <strong>Fork the Repository First</strong>
+        <p>Fork <strong>JamberTech-WA</strong> on GitHub, then enter your details below to deploy.</p>
+      </div>
+    </div>
+
+    <form id="deployForm">
+      <div class="form-group">
+        <label class="label"><i class="fab fa-github"></i> GitHub Username</label>
+        <div class="input-wrapper">
+          <input type="text" id="username" class="input" placeholder="Enter your GitHub username" required>
+          <i class="fab fa-github input-icon"></i>
+        </div>
+        <div class="hint"><i class="fas fa-lightbulb"></i> Must fork JamberTech-WA repository first</div>
+      </div>
+
+      <div class="form-group">
+        <label class="label"><i class="fas fa-key"></i> SESSION_ID</label>
+        <div class="input-wrapper">
+          <input type="text" id="session" class="input" placeholder="DJ~xxxxxxxx or IK~xxxxxxxx" required>
+          <i class="fas fa-key input-icon"></i>
+        </div>
+        <div class="hint" id="sessionHint"><i class="fas fa-info-circle" style="color:#29c48c"></i> DJ~ (short) or IK~ (long &gt;100 chars)</div>
+      </div>
+
+      <div class="form-group">
+        <label class="label"><i class="fas fa-tag"></i> App Name</label>
+        <div class="input-wrapper">
+          <input type="text" id="appname" class="input" placeholder="my-jamber-bot" pattern="[a-z0-9-]*" required>
+          <i class="fas fa-tag input-icon"></i>
+        </div>
+        <div class="hint"><i class="fas fa-lightbulb"></i> Lowercase letters, numbers, and hyphens only</div>
+      </div>
+
+      <div class="config-header" id="configHeader">
+        <div class="config-header-left"><i class="fas fa-cog"></i> <span>Set Config Variables</span></div>
+        <i class="fas fa-chevron-down config-arrow" id="configArrow"></i>
+      </div>
+
+      <div class="config-content" id="configContent">
+        <p style="color:rgba(255,255,255,.6);font-size:13px;margin-bottom:15px"><i class="fas fa-info-circle" style="color:#29c48c"></i> Leave empty to use default values</p>
+        <div class="config-grid">
+          <div class="config-item"><div class="config-label"><i class="fas fa-hashtag"></i> PREFIX</div><input type="text" class="config-input" id="PREFIX" placeholder="."></div>
+          <div class="config-item"><div class="config-label"><i class="fas fa-robot"></i> BOT_NAME</div><input type="text" class="config-input" id="BOT_NAME" placeholder="JamberTech-WA"></div>
+          <div class="config-item"><div class="config-label"><i class="fas fa-user"></i> OWNER_NAME</div><input type="text" class="config-input" id="OWNER_NAME" placeholder="Your Name"></div>
+          <div class="config-item"><div class="config-label"><i class="fas fa-phone"></i> OWNER_NUMBER</div><input type="text" class="config-input" id="OWNER_NUMBER" placeholder="923xxxxxxxxx"></div>
+          <div class="config-item"><div class="config-label"><i class="fas fa-brain"></i> NEXY_NAME</div><input type="text" class="config-input" id="NEXY_NAME" placeholder="Nexy_JTJarvis"></div>
+          <div class="config-item"><div class="config-label"><i class="fas fa-align-left"></i> DESCRIPTION</div><input type="text" class="config-input" id="DESCRIPTION" placeholder="Bot description"></div>
+          <div class="config-item"><div class="config-label"><i class="fas fa-toggle-on"></i> MODE</div><select class="config-select" id="MODE"><option value="">Default (public)</option><option value="public">public</option><option value="private">private</option><option value="inbox">inbox</option><option value="groups">groups</option></select></div>
+          <div class="config-item"><div class="config-label"><i class="fas fa-toggle-on"></i> AUTO_REPLY</div><select class="config-select" id="AUTO_REPLY"><option value="">Default (false)</option><option value="true">true</option><option value="false">false</option></select></div>
+          <div class="config-item"><div class="config-label"><i class="fas fa-toggle-on"></i> READ_MESSAGE</div><select class="config-select" id="READ_MESSAGE"><option value="">Default (false)</option><option value="true">true</option><option value="false">false</option></select></div>
+          <div class="config-item"><div class="config-label"><i class="fas fa-toggle-on"></i> AUTO_REACT</div><select class="config-select" id="AUTO_REACT"><option value="">Default (false)</option><option value="true">true</option><option value="false">false</option></select></div>
+          <div class="config-item"><div class="config-label"><i class="fas fa-toggle-on"></i> ALWAYS_ONLINE</div><select class="config-select" id="ALWAYS_ONLINE"><option value="">Default (false)</option><option value="true">true</option><option value="false">false</option></select></div>
+          <div class="config-item"><div class="config-label"><i class="fas fa-toggle-on"></i> AUTO_TYPING</div><select class="config-select" id="AUTO_TYPING"><option value="">Default (false)</option><option value="true">true</option><option value="inbox">inbox</option><option value="group">group</option></select></div>
+          <div class="config-item"><div class="config-label"><i class="fas fa-toggle-on"></i> ANTI_LINK</div><select class="config-select" id="ANTI_LINK"><option value="">Default (true)</option><option value="true">true</option><option value="warn">warn</option><option value="delete">delete</option><option value="false">false</option></select></div>
+          <div class="config-item"><div class="config-label"><i class="fas fa-toggle-on"></i> ANTI_DELETE</div><select class="config-select" id="ANTI_DELETE"><option value="">Default (true)</option><option value="true">true</option><option value="false">false</option></select></div>
+          <div class="config-item"><div class="config-label"><i class="fas fa-toggle-on"></i> ANTI_CALL</div><select class="config-select" id="ANTI_CALL"><option value="">Default (false)</option><option value="true">true</option><option value="false">false</option></select></div>
+          <div class="config-item"><div class="config-label"><i class="fas fa-toggle-on"></i> AUTO_STATUS_SEEN</div><select class="config-select" id="AUTO_STATUS_SEEN"><option value="">Default (true)</option><option value="true">true</option><option value="false">false</option></select></div>
+          <div class="config-item"><div class="config-label"><i class="fas fa-toggle-on"></i> WELCOME</div><select class="config-select" id="WELCOME"><option value="">Default (false)</option><option value="true">true</option><option value="false">false</option></select></div>
+          <div class="config-item"><div class="config-label"><i class="fas fa-toggle-on"></i> GOODBYE</div><select class="config-select" id="GOODBYE"><option value="">Default (false)</option><option value="true">true</option><option value="false">false</option></select></div>
+          <div class="config-item"><div class="config-label"><i class="fas fa-robot"></i> NEXY_CHAT</div><select class="config-select" id="NEXY_CHAT"><option value="">Default (false)</option><option value="true">true - Enable Nexy AI</option><option value="false">false - Disable</option></select></div>
+          <div class="config-item"><div class="config-label"><i class="fas fa-toggle-on"></i> ADMIN_ACTION</div><select class="config-select" id="ADMIN_ACTION"><option value="">Default (false)</option><option value="true">true</option><option value="false">false</option></select></div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-deploy" id="deployBtn"><i class="fas fa-rocket"></i> Deploy Bot</button>
+    </form>
+
+    <div class="loading" id="loading">
+      <div class="spinner"></div>
+      <p class="loading-text">Deploying your JamberTech-WA bot...</p>
+    </div>
+
+    <button class="btn-manage" id="manageBtn"><i class="fas fa-sliders-h"></i> Manage Bot</button>
+
+    <div class="footer"><p class="footer-text">© 2026 JamberTech Official | JamberTech-WA</p></div>
+  </div>
+</div>
+
+<!-- PAIR MODAL -->
+<div class="modal" id="pairModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <div class="modal-title"><i class="fas fa-link"></i> Get Session ID</div>
+      <button class="modal-close" id="closePairModal"><i class="fas fa-times"></i></button>
+    </div>
+    <p style="color:rgba(255,255,255,.6);font-size:13px;margin-bottom:16px">Choose a pairing method to get your WhatsApp Session ID:</p>
+    <div class="pair-options">
+      <div class="pair-option" id="shortPairOption">
+        <div class="pair-option-icon"><i class="fas fa-bolt"></i></div>
+        <div><h3>Short Pair Code</h3><p>Quick 8-digit pairing code — recommended</p></div>
+      </div>
+      <div class="pair-option" id="longPairOption">
+        <div class="pair-option-icon" style="background:linear-gradient(135deg,#7c3aed,#2563eb)"><i class="fas fa-qrcode"></i></div>
+        <div><h3>QR Code / Long Pair</h3><p>Scan QR code with your WhatsApp</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FORK MODAL -->
+<div class="modal" id="forkModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <div class="modal-title"><i class="fab fa-github"></i> Verify Fork</div>
+      <button class="modal-close" id="closeForkModal"><i class="fas fa-times"></i></button>
+    </div>
+    <p style="color:rgba(255,255,255,.6);font-size:13px;margin-bottom:20px">Have you forked the <strong style="color:#29c48c">JamberTech-WA</strong> repository on GitHub?</p>
+    <div class="fork-btns">
+      <button class="btn-fork" id="goForkBtn"><i class="fas fa-code-branch"></i> Fork Now</button>
+      <button class="btn-deploy" id="verifyForkBtn" style="flex:1;margin:0"><i class="fas fa-check"></i> Forked ✓</button>
+    </div>
+  </div>
+</div>
+
+<!-- SUCCESS MODAL -->
+<div class="modal" id="successModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <div class="modal-title"><i class="fas fa-check-circle"></i> Deployed!</div>
+      <button class="modal-close" id="closeSuccessModal"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="success-icon"><i class="fas fa-check-circle"></i></div>
+    <p style="text-align:center;color:rgba(255,255,255,.8);font-size:14px">Your <strong style="color:#29c48c">JamberTech-WA</strong> bot has been deployed!</p>
+    <div class="success-details">
+      <div class="success-label">App Name</div>
+      <div class="success-value" id="successAppName"></div>
+      <div class="success-label" style="margin-top:10px">Status</div>
+      <div class="success-value">🟢 Active — Bot is running</div>
+      <button class="copy-btn" id="copyAppNameBtn"><i class="fas fa-copy"></i> Copy App Name</button>
+    </div>
+    <button class="btn-reload" id="reloadBtn"><i class="fas fa-redo"></i> Deploy Another Bot</button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"><i class="fas fa-check-circle"></i><span id="toastText"></span></div>
+
+<script>
+const deployForm=document.getElementById('deployForm'),deployBtn=document.getElementById('deployBtn'),loading=document.getElementById('loading'),pairModal=document.getElementById('pairModal'),forkModal=document.getElementById('forkModal'),successModal=document.getElementById('successModal'),toast=document.getElementById('toast'),toastText=document.getElementById('toastText'),sessionInput=document.getElementById('session'),sessionHint=document.getElementById('sessionHint'),successAppName=document.getElementById('successAppName'),configHeader=document.getElementById('configHeader'),configContent=document.getElementById('configContent'),configArrow=document.getElementById('configArrow');
+function showModal(m){m.style.display='flex'}function hideModal(m){m.style.display='none'}
+function showToast(msg,type='success'){toastText.textContent=msg;toast.className='toast '+type+' show';setTimeout(()=>toast.classList.remove('show'),3000)}
+document.getElementById('getPairBtn').onclick=()=>showModal(pairModal);
+document.getElementById('forkBtn').onclick=()=>window.open('https://github.com/afnan-altaf/JamberTech-WA/fork','_blank');
+document.getElementById('manageBtn').onclick=()=>showToast('Manage panel coming soon!');
+document.getElementById('closePairModal').onclick=()=>hideModal(pairModal);
+document.getElementById('closeForkModal').onclick=()=>hideModal(forkModal);
+document.getElementById('closeSuccessModal').onclick=()=>hideModal(successModal);
+document.getElementById('shortPairOption').onclick=()=>{window.open('https://khanmd-xpair.onrender.com','_blank');hideModal(pairModal)};
+document.getElementById('longPairOption').onclick=()=>{window.open('https://khanmd-pair.onrender.com','_blank');hideModal(pairModal)};
+document.getElementById('goForkBtn').onclick=()=>window.open('https://github.com/afnan-altaf/JamberTech-WA/fork','_blank');
+document.getElementById('verifyForkBtn').onclick=()=>{hideModal(forkModal);deployForm.style.display='none';loading.classList.add('show');setTimeout(()=>{loading.classList.remove('show');deployForm.style.display='block';successAppName.textContent=document.getElementById('appname').value;showModal(successModal)},3000)};
+document.getElementById('copyAppNameBtn').onclick=()=>{navigator.clipboard.writeText(successAppName.textContent);showToast('Copied!')};
+document.getElementById('reloadBtn').onclick=()=>window.location.reload();
+configHeader.onclick=()=>{configContent.classList.toggle('show');configArrow.style.transform=configContent.classList.contains('show')?'rotate(180deg)':'rotate(0deg)'};
+window.onclick=e=>{if(e.target===pairModal)hideModal(pairModal);if(e.target===forkModal)hideModal(forkModal);if(e.target===successModal)hideModal(successModal)};
+deployForm.onsubmit=e=>{e.preventDefault();const s=document.getElementById('session').value;if(!s.startsWith('DJ~')&&!s.startsWith('IK~')){showToast('Invalid SESSION_ID format!','error');return}showModal(forkModal)};
+sessionInput.oninput=function(){const s=this.value;if(!s){sessionHint.innerHTML='<i class="fas fa-info-circle" style="color:#29c48c"></i> DJ~ (short) or IK~ (long >100 chars)';return}if(s.startsWith('IK~')&&s.length>100)sessionHint.innerHTML='<i class="fas fa-check-circle" style="color:#29c48c"></i> Valid IK~ session ID';else if(s.startsWith('DJ~')&&s.length>=10)sessionHint.innerHTML='<i class="fas fa-check-circle" style="color:#29c48c"></i> Valid DJ~ session ID';else if(s.startsWith('IK~'))sessionHint.innerHTML='<i class="fas fa-exclamation-circle" style="color:#ff6b6b"></i> IK~ must be >100 characters';else if(s.startsWith('DJ~'))sessionHint.innerHTML='<i class="fas fa-exclamation-circle" style="color:#ff6b6b"></i> DJ~ must be at least 10 characters';else sessionHint.innerHTML='<i class="fas fa-exclamation-circle" style="color:#ff6b6b"></i> Must start with DJ~ or IK~'};
+</script>
+</body>
+</html>
